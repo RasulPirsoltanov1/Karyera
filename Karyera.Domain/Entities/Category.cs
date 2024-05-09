@@ -1,0 +1,9 @@
+﻿using Karyera.Domain.BaseEntities;
+
+namespace Karyera.Domain.Entities
+{
+    public class Category : BaseEntity
+    {
+        public string Name { get; set; }
+    }
+}

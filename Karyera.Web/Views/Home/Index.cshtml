@@ -1,0 +1,191 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main class="main">
+    <section class="section-box">
+        <div class="banner-hero hero-2 hero-3">
+            <div class="banner-inner">
+                <div class="block-banner">
+                    <h1 class="text-42 color-white wow animate__animated animate__fadeInUp">#1 <span class="color-green">İş Elanları</span> Saytı<br class="d-none d-lg-block">işə qəbul və ya növbəti işinizü tapın</h1>
+                    <div class="font-lg font-regular color-white mt-20 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">Hər ay, 3 milyondan çox iş axtaran işçi veb saytımıza müraciət edir, hər gün 140,000-dən çox müraciət edir</div>
+
+                    @await Component.InvokeAsync("UISearchVC")
+
+                    <div class="list-tags-banner mt-20 wow animate__animated animate__fadeInUp" data-wow-delay=".3s"><strong>Populyar Axtarışlar:</strong><a href="#">Dizayner</a>, <a href="#">Web</a>, <a href="#">IOS</a>, <a href="#">Developer</a>, <a href="#">PHP</a>, <a href="#">Köhnə</a>, <a href="#">Mühəndis</a></div>
+                </div>
+            </div>
+            <div class="container mt-60">
+                <div class="box-swiper mt-50">
+                    <div class="swiper-container swiper-group-5 swiper">
+                        <div class="swiper-wrapper pb-25 pt-5">
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-list.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/marketing.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Marketinq və Satış</h4>
+                                            <p class="font-xs">1526<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-grid.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/customer.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Müştəri Dəstəyi</h4>
+                                            <p class="font-xs">185<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-grid.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/finance.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Maliyyə</h4>
+                                            <p class="font-xs">168<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-list.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/lightning.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Software</h4>
+                                            <p class="font-xs">1856<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-grid.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/human.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>İnsan Resursları</h4>
+                                            <p class="font-xs">165<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-grid.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/management.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>İdarəetmə</h4>
+                                            <p class="font-xs">965<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-list.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/retail.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Rəylər və Məhsullar</h4>
+                                            <p class="font-xs">563<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-grid.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/security.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Təhlükəsizlik Analitikası</h4>
+                                            <p class="font-xs">254<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-grid.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/content.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Məzmun Müəllifi</h4>
+                                            <p class="font-xs">142<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide hover-up">
+                                <a href='jobs-list.html'>
+                                    <div class="item-logo">
+                                        <div class="image-left"><img alt="işBox" src="~/frontend/assets/imgs/page/homepage1/research.svg"></div>
+                                        <div class="text-info-right">
+                                            <h4>Bazar Araşdırması</h4>
+                                            <p class="font-xs">532<span> Vakansiya mövcuddur</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-style-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-box mt-70">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Jobs of the day</h2>
+                <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Search and connect with the right candidates faster.</p>
+                <div class="list-tabs mt-40">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li><a class="active" id="nav-tab-job-1" href="#tab-job-1" data-bs-toggle="tab" role="tab" aria-controls="tab-job-1" aria-selected="true"><img src="~/frontend/assets/imgs/page/homepage1/management.svg" alt="jobBox"> Management</a></li>
+                        <li><a id="nav-tab-job-2" href="#tab-job-2" data-bs-toggle="tab" role="tab" aria-controls="tab-job-2" aria-selected="false"><img src="~/frontend/assets/imgs/page/homepage1/marketing.svg" alt="jobBox"> Marketing &amp; Sale</a></li>
+                        <li><a id="nav-tab-job-3" href="#tab-job-3" data-bs-toggle="tab" role="tab" aria-controls="tab-job-3" aria-selected="false"><img src="~/frontend/assets/imgs/page/homepage1/finance.svg" alt="jobBox"> Finance</a></li>
+                        <li><a id="nav-tab-job-4" href="#tab-job-4" data-bs-toggle="tab" role="tab" aria-controls="tab-job-4" aria-selected="false"><img src="~/frontend/assets/imgs/page/homepage1/human.svg" alt="jobBox"> Human Resource</a></li>
+                        <li><a id="nav-tab-job-5" href="#tab-job-5" data-bs-toggle="tab" role="tab" aria-controls="tab-job-5" aria-selected="false"><img src="~/frontend/assets/imgs/page/homepage1/retail.svg" alt="jobBox"> Retail &amp; Products</a></li>
+                        <li><a id="nav-tab-job-6" href="#tab-job-6" data-bs-toggle="tab" role="tab" aria-controls="tab-job-6" aria-selected="false"><img src="~/frontend/assets/imgs/page/homepage1/content.svg" alt="jobBox"> Content Writer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-50">
+                <div class="tab-content" id="myTabContent-1">
+                    <div class="tab-pane fade show active" id="tab-job-1" role="tabpanel" aria-labelledby="tab-job-1">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="card-grid-2 grid-bd-16 hover-up">
+                                    <div class="card-block-info pt-25">
+                                        <h6><a href='job-details.html'>UX Designer &amp; Researcher remote</a></h6>
+                                        <div class="mt-5"><span class="card-briefcase mr-15">Remote</span><span class="card-time">3 mins ago</span></div>
+                                        <div class="mt-20 border-bottom pb-20">
+                                            <a class='btn btn-grey-small bg-14 mb-5 mr-5' href='jobs-grid.html'>Illustrator</a><a class='btn btn-grey-small bg-14 mb-5 mr-5' href='jobs-grid.html'>Adobe XD</a><a class='btn btn-grey-small bg-14 mb-5 mr-5' href='jobs-grid.html'>Figma</a><a class='btn btn-grey-small bg-14 mb-5 mr-5' href='jobs-grid.html'>Sketch</a><a class='btn btn-grey-small bg-14 mb-5 mr-5' href='jobs-grid.html'>Lunacy                        </a>
+                                        </div>
+                                        <div class="card-2-bottom mt-20">
+                                            <div class="row">
+                                                <div class="col-lg-7 col-md-7">
+                                                    <div class="d-flex">
+                                                        <img class="img-rounded" src="~/frontend/assets/imgs/brands/brand-1.png" alt="jobBox">
+                                                        <div class="info-right-img">
+                                                            <h6 class="color-brand-1 lh-14">Linkedin</h6><span class="card-location font-xxs pl-15 color-text-paragraph-2">New York, US</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-md-5 text-end"><span class="card-text-price">$200</span><span class="text-muted">/Hour</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
