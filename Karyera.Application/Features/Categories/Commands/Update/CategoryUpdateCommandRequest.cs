@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 
 namespace Karyera.Application.Features.Categories.Commands.Create
 {
-    public class CategoryCreateCommandRequest : IRequest<bool>
+    public class CategoryUpdateCommandRequest : IRequest<bool>
     {
+        [Required]
+        public int Id{ get; set; }
         [Required, MinLength(2)]
         public string Name { get; set; }
         public int? SubCategoryId { get; set; }
         public IFormFile? Image{ get; set; }
+        public string? ImageUrl{ get; set; }
     }
 
 }

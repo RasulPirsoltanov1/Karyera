@@ -1,1 +1,46 @@
-﻿
+﻿@model List<Karyera.Domain.Entities.Category>
+
+<h1>Categories</h1>
+@{
+    var count = 0;
+}
+<a asp-action="Create" asp-area="Admin" asp-controller="Category" class="btn btn-primary">Yeni kategoria əlavə et</a>
+<table class="table">
+    <thead>
+        <tr><th>#</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Subcategories</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr><td>@(++count)</td>
+                <td><img src="~/@category.ImageUrl" style="width:70px;"/></td>
+                <td>@category.Name</td>
+                <td>
+                    @if (category.Categories.Any())
+                    {
+                        <ul>
+                            @foreach (var subcategory in category.Categories)
+                            {
+                                <li>@subcategory.Name</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span>No subcategories</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@category.Id">Details</a> |
+                    <a asp-action="Update" asp-route-id="@category.Id">Update</a> |
+                    <a asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

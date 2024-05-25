@@ -11,5 +11,7 @@ namespace Karyera.Application.Abstractions
     public interface IDbContextManager<T> where T : BaseEntity
     {
         DbSet<T> Table { get; }
+        Task<int> SaveChangesAsync();
+        int SaveChanges();
     }
 }

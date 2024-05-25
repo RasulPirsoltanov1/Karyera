@@ -4,6 +4,7 @@ using Karyera.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karyera.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240512181827_mig_1")]
+    partial class mig_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,11 +155,11 @@ namespace Karyera.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTimeOffset?>("CreateDate")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MainCategory")
                         .HasColumnType("int");
@@ -170,7 +173,7 @@ namespace Karyera.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MainCategory");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -453,8 +456,7 @@ namespace Karyera.Infrastructure.Migrations
                 {
                     b.HasOne("Karyera.Domain.Entities.Category", null)
                         .WithMany("Categories")
-                        .HasForeignKey("MainCategory")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CategoryId");
                 });
 
             modelBuilder.Entity("Karyera.Domain.Entities.Company", b =>

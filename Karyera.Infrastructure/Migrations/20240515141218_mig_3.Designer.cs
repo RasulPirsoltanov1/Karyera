@@ -4,6 +4,7 @@ using Karyera.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karyera.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240515141218_mig_3")]
+    partial class mig_3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,7 +161,7 @@ namespace Karyera.Infrastructure.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MainCategory")
+                    b.Property<int?>("MainCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -170,7 +173,7 @@ namespace Karyera.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MainCategory");
+                    b.HasIndex("MainCategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -451,10 +454,12 @@ namespace Karyera.Infrastructure.Migrations
 
             modelBuilder.Entity("Karyera.Domain.Entities.Category", b =>
                 {
-                    b.HasOne("Karyera.Domain.Entities.Category", null)
+                    b.HasOne("Karyera.Domain.Entities.Category", "MainCategory")
                         .WithMany("Categories")
-                        .HasForeignKey("MainCategory")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MainCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("MainCategory");
                 });
 
             modelBuilder.Entity("Karyera.Domain.Entities.Company", b =>

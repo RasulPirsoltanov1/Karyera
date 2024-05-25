@@ -20,5 +20,15 @@ namespace Karyera.Infrastructure.Concretes
         }
 
         public DbSet<T> Table => _appDbContext.Set<T>();
+
+        public int SaveChanges()
+        {
+          return _appDbContext.SaveChanges();
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _appDbContext.SaveChangesAsync();
+        }
     }
 }

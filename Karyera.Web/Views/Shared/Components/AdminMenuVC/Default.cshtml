@@ -20,33 +20,30 @@
                     <small class="text-muted">Sales Manager</small>
                 </div>
             </a>
-            @* <div class="dropdown-menu dropdown-menu-end">
-                <a href="#" class="dropdown-item d-flex align-items-center">
-                    <i class="bi bi-person dropdown-item-icon"></i> Profile
-                </a>
-                <a href="#" class="dropdown-item d-flex align-items-center">
-                    <i class="bi bi-envelope dropdown-item-icon"></i> Inbox
-                </a>
-                <a href="#" class="dropdown-item d-flex align-items-center" data-sidebar-target="#settings">
-                    <i class="bi bi-gear dropdown-item-icon"></i> Settings
-                </a>
-                <a href="login.html" class="dropdown-item d-flex align-items-center text-danger"
-                   target="_blank">
-                    <i class="bi bi-box-arrow-right dropdown-item-icon"></i> Logout
-                </a>
-            </div> *@
+
         </div>
         <ul>
             <li class="menu-divider">Menu</li>
             <li>
                 <a class="active"
-                   href="index.html">
+                   asp-action="Index" asp-controller="Dashboard" asp-area="Admin">
                     <span class="nav-link-icon">
                         <i class="bi bi-bar-chart"></i>
                     </span>
                     <span>Dashboard</span>
                 </a>
             </li>
+
+            <li>
+                <a class=""
+                   asp-action="Index" asp-controller="Category" asp-area="Admin">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </span>
+                    <span>Category</span>
+                </a>
+            </li>
+        
         </ul>
     </div>
 </div>

@@ -1,21 +1,39 @@
 using Karyera.Application.Abstractions;
+using Karyera.Application.Features.Categories.Queries.GetAll;
 using Karyera.Infrastructure.Concretes;
 using Karyera.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using System.Reflection;
+using Karyera.Application.Features.Categories.Commands.Create;
+using FluentValidation.AspNetCore;
+using Karyera.Infrastructure.Interceptors;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<DbContextInterceptor>();
 
-
-builder.Services.AddDbContext<AppDbContext>(opt =>
+builder.Services.AddDbContext<AppDbContext>((sp, opt) =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+    opt.AddInterceptors(sp.GetRequiredService<DbContextInterceptor>()); // Interceptor ekleme
 });
 
 
 builder.Services.AddScoped(typeof(IDbContextManager<>),typeof(DbContextManager<>));
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssembly(typeof(CategoryCreateCommandRequestValidator).Assembly);
+
+builder.Services.AddMediatR(opt =>
+{
+    opt.RegisterServicesFromAssemblyContaining<CategoryGetAllQueryRequest>();
+});
+
+
 
 
 

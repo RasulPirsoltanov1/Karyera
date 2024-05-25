@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,5 +20,10 @@ namespace Karyera.Infrastructure.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<EducationInfo> EducationInfos { get; set; }
         public DbSet<ExperienceInfo> ExperienceInfos { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(assembly: Assembly.GetExecutingAssembly());
+            base.OnModelCreating(builder);
+        }
     }
 }
