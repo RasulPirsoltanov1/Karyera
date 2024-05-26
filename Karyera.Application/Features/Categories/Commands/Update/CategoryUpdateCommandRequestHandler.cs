@@ -44,8 +44,8 @@ namespace Karyera.Application.Features.Categories.Commands.Update
                         var subcategory = await _dbContextManager.Table.FindAsync(request.SubCategoryId);
                         if (subcategory != null)
                         {
-                            existingCategory.MainCategory = request.SubCategoryId;
-                            subcategory.Categories.Add(existingCategory);
+                            existingCategory.ParentCategoryId = request.SubCategoryId;
+                            subcategory.SubCategories.Add(existingCategory);
                         }
                     }
 

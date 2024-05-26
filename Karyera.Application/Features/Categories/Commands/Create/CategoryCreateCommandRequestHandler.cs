@@ -33,9 +33,9 @@ namespace Karyera.Application.Features.Categories.Commands.Create
                     var subcategory = await _dbContextManager.Table.FindAsync(request.SubCategoryId);
                     if (subcategory != null)
                     {
-                        category.MainCategory = request.SubCategoryId;
+                        category.ParentCategoryId = request.SubCategoryId;
                         await _dbContextManager.Table.AddAsync(category);
-                        subcategory?.Categories?.Add(category);
+                        subcategory?.SubCategories?.Add(category);
                         await _dbContextManager.SaveChangesAsync();
                         return true;
                     }

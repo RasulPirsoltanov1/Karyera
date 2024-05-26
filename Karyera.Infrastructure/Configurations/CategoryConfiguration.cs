@@ -14,10 +14,15 @@ namespace Karyera.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasMany(c => c.Categories) // Bir kategorinin birden çok alt kategorisi olabilir
-        .WithOne() // Her bir alt kategori, yalnızca bir üst kategoriye sahip olabilir
-        .HasForeignKey(c => c.MainCategory).OnDelete(deleteBehavior: DeleteBehavior.Cascade)// Her alt kategori, bir üst kategoriye ait bir anahtar taşımalıdır
-        .IsRequired(false);
+        //    builder.HasMany(c => c.Categories) // Bir kategorinin birden çok alt kategorisi olabilir
+        //.WithOne() // Her bir alt kategori, yalnızca bir üst kategoriye sahip olabilir
+        //.HasForeignKey(c => c.MainCategory).OnDelete(deleteBehavior: DeleteBehavior.NoAction)// Her alt kategori, bir üst kategoriye ait bir anahtar taşımalıdır
+        //.IsRequired(false);
+        builder.HasOne(c => c.ParentCategory)
+                .WithMany(c => c.SubCategories)
+                .HasForeignKey(c => c.ParentCategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

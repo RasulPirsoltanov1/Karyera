@@ -21,10 +21,10 @@
                 <td><img src="~/@category.ImageUrl" style="width:70px;"/></td>
                 <td>@category.Name</td>
                 <td>
-                    @if (category.Categories.Any())
+                    @if (category.SubCategories.Any())
                     {
                         <ul>
-                            @foreach (var subcategory in category.Categories)
+                            @foreach (var subcategory in category.SubCategories)
                             {
                                 <li>@subcategory.Name</li>
                             }

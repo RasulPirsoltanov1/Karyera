@@ -61,7 +61,7 @@ namespace Karyera.Web.Areas.Admin.Controllers
             return View(new CategoryUpdateCommandRequest
             {
                 Id =category.Id,
-                SubCategoryId=category.MainCategory,
+                SubCategoryId=category.ParentCategoryId,
                 ImageUrl = category.ImageUrl,
                 Name=category.Name,
             });

@@ -158,19 +158,19 @@ namespace Karyera.Infrastructure.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MainCategory")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset?>("UpdateDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MainCategory");
+                    b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -193,6 +193,9 @@ namespace Karyera.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Industry")
@@ -451,10 +454,12 @@ namespace Karyera.Infrastructure.Migrations
 
             modelBuilder.Entity("Karyera.Domain.Entities.Category", b =>
                 {
-                    b.HasOne("Karyera.Domain.Entities.Category", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("MainCategory")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("Karyera.Domain.Entities.Category", "ParentCategory")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("ParentCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ParentCategory");
                 });
 
             modelBuilder.Entity("Karyera.Domain.Entities.Company", b =>
@@ -555,7 +560,7 @@ namespace Karyera.Infrastructure.Migrations
 
             modelBuilder.Entity("Karyera.Domain.Entities.Category", b =>
                 {
-                    b.Navigation("Categories");
+                    b.Navigation("SubCategories");
                 });
 #pragma warning restore 612, 618
         }

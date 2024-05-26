@@ -1,4 +1,11 @@
-﻿<!-- menu -->
+﻿﻿@using System.Security.Claims
+@{
+    var currentController = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    var currentArea = ViewContext.RouteData.Values["area"].ToString().ToLower();
+    var currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
+}
+
+<!-- menu -->
 <div class="menu">
     <div class="menu-header">
         <a href="index.html" class="menu-header-logo">
@@ -25,7 +32,7 @@
         <ul>
             <li class="menu-divider">Menu</li>
             <li>
-                <a class="active"
+                <a class="@((currentController == "dashboard" && currentArea == "admin") ? "active" : "")"
                    asp-action="Index" asp-controller="Dashboard" asp-area="Admin">
                     <span class="nav-link-icon">
                         <i class="bi bi-bar-chart"></i>
@@ -35,15 +42,23 @@
             </li>
 
             <li>
-                <a class=""
+                <a class="@((currentController == "category" && currentArea == "admin") ? "active" : "")"
                    asp-action="Index" asp-controller="Category" asp-area="Admin">
                     <span class="nav-link-icon">
-                        <i class="bi bi-bar-chart"></i>
+                        <i class="bi bi-bookmark"></i>
                     </span>
                     <span>Category</span>
                 </a>
             </li>
-        
+            <li>
+                <a class="@((currentController == "vacancy" && currentArea == "admin") ? "active" : "")"
+                   asp-action="Index" asp-controller="Vacancy" asp-area="Admin">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-card-list"></i>
+                    </span>
+                    <span>Vacancies</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

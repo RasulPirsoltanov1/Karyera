@@ -1,0 +1,107 @@
+﻿@using Karyera.Application.Features.Jobs.Commands
+@using Karyera.Domain.Entities
+@model JobCreateCommandRequest
+
+@{
+    ViewData["Title"] = "Create Job";
+}
+<link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+<h2>Create Job</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Company" class="control-label"></label>
+        <input asp-for="Company" class="form-control" />
+        <span asp-validation-for="Company" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Location" class="control-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label"></label>
+        <input asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Requirements</label>
+        <input  asp-for="Requirements" type="text" data-role="taginput">
+    </div>
+    <div class="form-group">
+        <label asp-for="ContactEmail" class="control-label"></label>
+        <input asp-for="ContactEmail" class="form-control" />
+        <span asp-validation-for="ContactEmail" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId" class="control-label"></label>
+        <select asp-for="CategoryId" class="form-control">
+            <option value="">Uyğun kategorianı seçin.</option>
+            @foreach (var cat in (List<Category>)ViewBag.Categories)
+            {
+                <option value="@cat.Id">@cat.Name</option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Salary" class="control-label"></label>
+        <input asp-for="Salary" type="number" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <style type="text/css">
+        /* Custom CSS for checkbox */
+.checkbox-custom .form-check-input {
+    width: 30px;
+    height: 30px;
+}
+
+.checkbox-custom .form-check-label {
+    font-size: 18px; /* Adjust font size as needed */
+    margin-left: 10px; /* Adjust margin as needed */
+    vertical-align: middle;
+}
+
+    </style>
+    <div class="form-group">
+        <div class="form-check">
+            <input asp-for="IsRemote" type="checkbox" class="form-check-input" id="isRemoteCheckbox">
+            <label asp-for="IsRemote" class="form-check-label" for="isRemoteCheckbox">
+                Remote Job
+            </label>
+        </div>
+        <span asp-validation-for="IsRemote" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-3">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Js {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.getElementById('add-requirement').addEventListener('click', function() {
+            var container = document.getElementById('requirements-list');
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'Requirements';
+            input.className = 'form-control mb-2';
+            container.appendChild(input);
+        });
+    </script>
+    <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+}

@@ -41,7 +41,7 @@
 
             @foreach (var category in (List<Category>)ViewBag.Categories)
             {
-                @if (category.MainCategory == 0 || category.MainCategory == null)
+                @if (category.ParentCategoryId == 0 || category.ParentCategoryId == null)
                 {
                     <option value="@category.Id">@category.Name</option>
                 }

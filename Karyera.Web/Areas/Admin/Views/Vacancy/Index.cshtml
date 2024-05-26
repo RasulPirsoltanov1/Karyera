@@ -1,0 +1,86 @@
+﻿@using Karyera.Domain.Entities
+@model List<Job>
+
+@{
+    ViewData["Title"] = "Job Listings";
+    int pageNumber = ViewBag.PageNumber;
+    int pageSize = 20;
+    int totalJobs = ViewBag.TotalJobs;
+    int totalPages = (int)Math.Ceiling((double)totalJobs / pageSize);
+}
+
+<h2>Job Listings</h2>
+<a asp-action="Create" asp-area="Admin" asp-controller="Vacancy" class="btn btn-primary float-end">Yeni vakansiya əlavə et.</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <style>
+            .action-link {
+                display: inline-block; /* Ensure each link is on its own line */
+                margin-right: 10px; /* Add spacing between links */
+            }
+
+            .icon-large {
+                font-size: 24px; /* Set the font size of the icons */
+            }
+        </style>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.Title</td>
+                <td>@job.Company</td>
+                <td>@job.Location</td>
+                <td>@(job.Description?.Length > 77 ? job.Description?.Substring(0, 77) : job.Description)</td>
+                <td>
+                    <div class="action-link">
+                        <a asp-area="Admin" asp-controller="Vacancy" asp-action="Detail" asp-route-id="@job.Id">
+                            <i class="bi bi-arrow-right-circle icon-large"></i>
+                        </a>
+                    </div>
+
+                    <div class="action-link">
+                        <a asp-area="Admin" asp-controller="Vacancy" asp-action="Update" asp-route-id="@job.Id">
+                            <i class="bi bi-pencil icon-large"></i>
+                        </a>
+                    </div>
+                    <div class="action-link">
+                        <a asp-area="Admin" asp-controller="Vacancy" asp-action="Delete" asp-route-id="@job.Id">
+                            <i class="bi bi-trash icon-large"></i>
+                        </a>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(pageNumber <= 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { pageNumber = pageNumber - 1, pageSize })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(pageNumber == i ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = i, pageSize })">@i</a>
+            </li>
+        }
+        <li class="page-item @(pageNumber >= totalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { pageNumber = pageNumber + 1, pageSize })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

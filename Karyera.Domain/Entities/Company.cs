@@ -6,6 +6,7 @@ namespace Karyera.Domain.Entities
     {
         // Şirkətin xüsusiyyətləri
         public string? Name { get; set; }
+        public string? ImageUrl{ get; set; }
         public int? AppUserId{ get; set; }
         public AppUser? AppUser { get; set; }
         public string? Industry { get; set; } // Sənaye
