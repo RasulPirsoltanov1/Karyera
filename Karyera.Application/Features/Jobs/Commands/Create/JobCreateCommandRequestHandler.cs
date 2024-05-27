@@ -3,7 +3,7 @@ using Karyera.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Karyera.Application.Features.Jobs.Commands
+namespace Karyera.Application.Features.Jobs.Commands.Create
 {
     public class JobCreateCommandRequestHandler : IRequestHandler<JobCreateCommandRequest, bool>
     {

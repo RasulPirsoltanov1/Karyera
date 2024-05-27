@@ -25,4 +25,11 @@ namespace Karyera.Infrastructure.Configurations
 
         }
     }
+    //public class CompanyConfiguration : IEntityTypeConfiguration<Company>
+    //{
+    //    public void Configure(EntityTypeBuilder<Company> builder)
+    //    {
+    //        builder.HasMany(x=>x.Jobs).WithOne(x=>x.Company);
+    //    }
+    //}
 }

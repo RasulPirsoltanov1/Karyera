@@ -1,14 +1,14 @@
-﻿@using Karyera.Application.Features.Jobs.Commands.Create
+﻿@using Karyera.Application.Features.Jobs.Commands.Update
 @using Karyera.Domain.Entities
-@model JobCreateCommandRequest
-
+@model JobUpdateCommandRequest
 @{
     ViewData["Title"] = "Create Job";
 }
 <link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
 <h2>Create Job</h2>
 
-<form asp-action="Create" method="post">
+<form asp-action="Update" method="post">
+    <input asp-for="Id" class="" hidden />
     <div class="form-group">
         <label asp-for="Title" class="control-label"></label>
         <input asp-for="Title" class="form-control" />
@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
         <label>Requirements</label>
-        <input asp-for="Requirements" type="text" data-role="taginput">
+        <input asp-for="Requirements" type="text" value="@String.Join(',',Model?.Requirements)" data-role="taginput">
     </div>
     <div class="form-group">
         <label asp-for="ContactEmail" class="control-label"></label>
@@ -93,15 +93,6 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    <script>
-        document.getElementById('add-requirement').addEventListener('click', function () {
-            var container = document.getElementById('requirements-list');
-            var input = document.createElement('input');
-            input.type = 'text';
-            input.name = 'Requirements';
-            input.className = 'form-control mb-2';
-            container.appendChild(input);
-        });
-    </script>
+    
     <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
 }

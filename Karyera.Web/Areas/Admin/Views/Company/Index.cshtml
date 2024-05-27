@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Karyera.Domain.Entities.Company>
+
+@{
+    ViewData["Title"] = "Companies List";
+}
+
+<h1>Şirkətlər</h1>
+<a href="@Url.Action("Create", "Company")" class="btn btn-primary float-end">Create New</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Industry</th>
+            <th>Location</th>
+            <th>Contact Email</th>
+            <th>Website</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Industry</td>
+                <td>@item.Location</td>
+                <td>@item.ContactEmail</td>
+                <td><a href="@item.Website" target="_blank">@item.Website</a></td>
+                <td>
+                    <a href="@Url.Action("Edit", "Company", new { id = item.Id })">Edit</a> |
+                    <a href="@Url.Action("Details", "Company", new { id = item.Id })">Details</a> |
+                    <a href="@Url.Action("Delete", "Company", new { id = item.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

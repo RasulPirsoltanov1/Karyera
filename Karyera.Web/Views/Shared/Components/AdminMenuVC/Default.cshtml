@@ -59,6 +59,15 @@
                     <span>Vacancies</span>
                 </a>
             </li>
+            <li>
+                <a class="@((currentController == "company" && currentArea == "admin") ? "active" : "")"
+                   asp-action="Index" asp-controller="Company" asp-area="Admin">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-building"></i>
+                    </span>
+                    <span>Companies</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

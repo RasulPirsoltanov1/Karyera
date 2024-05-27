@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Karyera.Application.Features.Jobs.Commands
+namespace Karyera.Application.Features.Jobs.Commands.Create
 {
     public class JobCreateCommandRequest : IRequest<bool>
     {
