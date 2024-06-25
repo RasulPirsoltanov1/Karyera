@@ -1,0 +1,160 @@
+﻿@using Karyera.Application.DTOs.AppUser
+@model List<AppUserDTO>
+
+@{
+    ViewData["Title"] = "User List";
+    int pageNumber = ViewBag.PageNumber ?? 1;
+    int pageSize = 20;
+    int totalJobs = ViewBag.TotalJobs;
+    int totalPages = (int)Math.Ceiling((double)totalJobs / pageSize);
+}
+
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+<h1>User List</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Heading</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Name</th>
+            <th>SurName</th>
+            <th>Roles</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Heading</td>
+                <td>@user.Email</td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox" onclick="setStatus(@user.Id, '@user.Email')" @(user.IsActive ? "checked" : "")>
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+                <td>@user.Name</td>
+                <td>@user.SurName</td>
+                <td>
+                    @if (user.Roles != null && user.Roles.Any())
+                    {
+                        @string.Join(", ", user.Roles)
+                    }
+                    else
+                    {
+                        <span>No roles assigned</span>
+                    }
+                </td>
+                <td><a class="btn btn-warning" asp-action="Edit" asp-area="Admin" asp-controller="User" asp-route-email="@user.Email">Edit</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<div class="pagination">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item @(pageNumber <= 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = pageNumber - 1, pageSize })" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(pageNumber == i ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { pageNumber = i, pageSize })">@i</a>
+                </li>
+            }
+            <li class="page-item @(pageNumber >= totalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = pageNumber + 1, pageSize })" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+@section Js {
+    <script>
+        function setStatus(userId, email) {
+            $.ajax({
+                type: "POST",
+                url: 'User/SetStatus',
+                data: JSON.stringify({
+                    userId: userId,
+                    email: email
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr, status, error);
+                }
+            });
+        }
+    </script>
+}

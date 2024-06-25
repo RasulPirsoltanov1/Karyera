@@ -28,9 +28,7 @@
                 <td>@item.ContactEmail</td>
                 <td><a href="@item.Website" target="_blank">@item.Website</a></td>
                 <td>
-                    <a href="@Url.Action("Edit", "Company", new { id = item.Id })">Edit</a> |
-                    <a href="@Url.Action("Details", "Company", new { id = item.Id })">Details</a> |
-                    <a href="@Url.Action("Delete", "Company", new { id = item.Id })">Delete</a>
+                    <a href="@Url.Action("Delete", "Company", new { id = item.Id })"> <i class="bi bi-trash icon-large"></i></a>
                 </td>
             </tr>
         }

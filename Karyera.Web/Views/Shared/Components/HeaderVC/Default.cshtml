@@ -2,24 +2,38 @@
     <div class="container">
         <div class="main-header">
             <div class="header-left">
-                <div class="header-logo"><a class='d-flex' href='index.html'><img alt="işBox" src="~/frontend/assets/imgs/template/jobhub-logo.svg"></a></div>
+                <div class="header-logo"><a class='d-flex' asp-action="Index" asp-controller="Home"><img alt="işBox" src="~/frontend/assets/imgs/template/jobhub-logo.svg"></a></div>
             </div>
             <div class="header-nav">
                 <nav class="nav-main-menu">
                     <ul class="main-menu">
-                        <li><a class='active' href='index.html'>Əsas Səhifə</a>
-                        <li><a class='active' href='index.html'>Əsas Səhifə</a>
-                        <li><a class='active' href='index.html'>Əsas Səhifə</a>
+                        <li><a class='active' asp-action="Index" asp-controller="Home">Əsas Səhifə</a>
+                        <li><a class='active' asp-action="Index" asp-controller="Home">Əsas Səhifə</a>
+                        <li><a class='active' asp-action="Index" asp-controller="Home">Əsas Səhifə</a>
                         <li>
-                            <a class='active' href='index.html'>Əsas Səhifə</a>
+                            <a class='active' asp-action="Index" asp-controller="Home">Əsas Səhifə</a>
                         </li>
-                        <li class="dashboard"><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard" target="_blank">İdarə Paneli</a></li>
+                        <li class="dashboard"><a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" target="_blank">İdarə Paneli</a></li>
                     </ul>
                 </nav>
                 <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
             </div>
             <div class="header-right">
-                <div class="block-signin"><a class='text-link-bd-btom hover-up' href='page-register.html'>Qeydiyyat</a><a class='btn btn-default btn-shadow ml-40 hover-up' href='page-signin.html'>Daxil ol</a></div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="block-signin" style="display: flex; align-items: center;">
+                        <a class='text-link-bd-btom hover-up' asp-action="index" asp-area="Profile" asp-controller="Profile">
+                            @(User.Identity.Name.Length < 15 ? User.Identity.Name : User.Identity.Name.Substring(0, 15))...
+                        </a>
+                        <a class='btn btn-danger btn-shadow ml-40 hover-up' asp-action="LogOut" asp-controller="Auth" style="margin-left: 40px;">
+                            LogOut
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="block-signin"><a class='text-link-bd-btom hover-up' asp-action="Index" asp-controller="Auth">Qeydiyyat</a><a class='btn btn-default btn-shadow ml-40 hover-up' asp-action="Login" asp-controller="Auth">Daxil ol</a></div>
+                }
             </div>
         </div>
     </div>

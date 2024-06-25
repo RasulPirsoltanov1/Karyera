@@ -42,7 +42,7 @@
                 <td>@(job.Description?.Length > 77 ? job.Description?.Substring(0, 77) : job.Description)</td>
                 <td>
                     <div class="action-link">
-                        <a asp-area="Admin" asp-controller="Vacancy" asp-action="Detail" asp-route-id="@job.Id">
+                        <a asp-area="Admin" asp-controller="Vacancy" asp-action="Details" asp-route-id="@job.Id">
                             <i class="bi bi-arrow-right-circle icon-large"></i>
                         </a>
                     </div>

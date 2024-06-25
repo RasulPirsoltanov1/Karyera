@@ -7,7 +7,6 @@ using Karyera.Application.Features.Jobs.Queries;
 using Karyera.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace Karyera.Web.Areas.Admin.Controllers
 {
@@ -88,6 +87,29 @@ namespace Karyera.Web.Areas.Admin.Controllers
                 Salary = job.Salary,
                 Title = job.Title
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(JobUpdateCommandRequest jobUpdateCommandRequest)
+        {
+            List<Category> categories = await _mediator.Send(new CategoryGetAllQueryRequest());
+            ViewBag.Categories = categories;
+            var result = await _mediator.Send(jobUpdateCommandRequest);
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(jobUpdateCommandRequest);
+        }
+        public async Task<IActionResult> Details(int id)
+        {
+            var job = await _mediator.Send(new JobGetByIdQueryRequest
+            {
+                JobId = id,
+            });
+            if (job == null)
+                return BadRequest();
+            return View(job);
         }
     }
 }

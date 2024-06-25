@@ -1,0 +1,47 @@
+﻿@using Karyera.Application.DTOs.AppUser
+@model AppUserDTO
+
+@{
+    ViewData["Title"] = "Edit User Roles";
+    var allRoles = ViewBag.AllRoles as List<string> ?? new List<string>();
+}
+
+<h1 class="mt-4">@ViewData["Title"]</h1>
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-header">
+        <h3>User Details</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Surname:</strong> @Model.SurName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+    </div>
+</div>
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-header">
+        <h3>Roles</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="UpdateUserRole" method="post">
+            <input type="hidden" name="userId" value="@Model.Id" />
+            <div class="form-group d-flex justify-content-around">
+                @foreach (var role in allRoles)
+                {
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="roles" value="@role" @(Model.Roles != null && Model.Roles.Contains(role) ? "checked" : "") />
+                        <label class="form-check-label">@role</label>
+                    </div>
+                }
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Save</button>
+        </form>
+    </div>
+</div>
+
+@section Js {
+    <script>
+        // Add any necessary JavaScript here if needed.
+    </script>
+}

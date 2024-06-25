@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 
 namespace Karyera.Application.Features.Companies.Commands.Delete
 {
-    public class CompanyDeleteCommandRequest:IRequest<bool>
+    public class CompanyDeleteCommandRequest : IRequest<bool>
     {
         public int CompanyId { get; set; }
-    }
-    public class CompanyDeleteCommandRequestHandler : IRequestHandler<CompanyDeleteCommandRequest, bool>
-    {
-        public Task<bool> Handle(CompanyDeleteCommandRequest request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

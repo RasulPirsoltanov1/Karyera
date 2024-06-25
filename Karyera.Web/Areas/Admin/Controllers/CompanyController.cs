@@ -1,4 +1,5 @@
 ﻿using Karyera.Application.Features.Companies.Commands.Create;
+using Karyera.Application.Features.Companies.Commands.Delete;
 using Karyera.Application.Features.Companies.Queries;
 using Karyera.Application.Features.Companies.Queries.GetAll;
 using MediatR;
@@ -33,6 +34,15 @@ namespace Karyera.Web.Areas.Admin.Controllers
             {
                 return View(companyCreateCommandRequest);
             }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new CompanyDeleteCommandRequest
+            {
+                CompanyId = id,
+            });
             return RedirectToAction(nameof(Index));
         }
     }

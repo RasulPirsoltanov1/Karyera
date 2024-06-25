@@ -60,6 +60,9 @@ namespace Karyera.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("About")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
@@ -82,6 +85,15 @@ namespace Karyera.Infrastructure.Migrations
 
                     b.Property<int?>("ExperienceId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Heading")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsCompany")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LinkedInProfile")
                         .HasColumnType("nvarchar(max)");
@@ -112,7 +124,10 @@ namespace Karyera.Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Resume")
+                    b.Property<string>("ProfilePhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ResumeUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")

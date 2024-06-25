@@ -18,15 +18,10 @@ namespace Karyera.Application.Features.Jobs.Queries
             try
             {
                 // Assuming _dbContextManager has a method to get all jobs
-                var allJobs = await _dbContextManager.Table.ToListAsync();
-
-                // Implement pagination
-                var pagedJobs = allJobs
-                    .Skip((request.PageNumber - 1) * request.PageSize)
+                var allJobs = await _dbContextManager.Table.Skip((request.PageNumber - 1) * request.PageSize)
                     .Take(request.PageSize)
-                    .ToList();
-
-                return pagedJobs;
+                    .ToListAsync();
+                return allJobs;
             }
             catch (Exception)
             {
